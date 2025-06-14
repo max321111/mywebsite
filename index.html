@@ -2,85 +2,83 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Контактная форма</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f4f7f8;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      margin: 0;
-      padding: 0 20px;
-    }
-    .container {
-      background: white;
-      padding: 30px 40px;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-      max-width: 400px;
-      width: 100%;
-    }
-    h1 {
-      text-align: center;
-      color: #333;
-      margin-bottom: 24px;
-    }
-    form {
-      display: flex;
-      flex-direction: column;
-    }
-    input, textarea {
-      padding: 10px;
-      margin-bottom: 15px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      font-size: 1rem;
-      resize: vertical;
-    }
-    input:focus, textarea:focus {
-      border-color: #007BFF;
-      outline: none;
-    }
-    button {
-      background-color: #007BFF;
-      color: white;
-      padding: 12px;
-      border: none;
-      border-radius: 4px;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-    button:hover {
-      background-color: #0056b3;
-    }
-    .footer {
-      text-align: center;
-      margin-top: 15px;
-      font-size: 0.9rem;
-      color: #666;
-    }
-  </style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Арт-Строй Краснодар</title>
+  <link rel="stylesheet" href="css/style.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="container">
-    <h1>Свяжитесь с нами</h1>
-    <form action="https://formsubmit.co/mtsebulya@list.ru" method="POST">
-      <input type="text" name="name" placeholder="Ваше имя" required />
-      <input type="email" name="email" placeholder="Email" required />
-      <textarea name="message" placeholder="Сообщение" rows="5" required></textarea>
 
-      <!-- Отключить капчу -->
-      <input type="hidden" name="_captcha" value="false" />
-      <!-- Перенаправление после отправки -->
-      <input type="hidden" name="_next" value="https://твой-сайт.ru/thank-you.html" />
+  <header class="hero">
+    <div class="container">
+      <h1>Арт-Строй Краснодар</h1>
+      <p>Надёжное строительство и дизайн с 2005 года</p>
+      <nav>
+        <ul>
+          <li><a href="#about">О нас</a></li>
+          <li><a href="#services">Услуги</a></li>
+          <li><a href="#projects">Проекты</a></li>
+          <li><a href="#contact">Контакты</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-      <button type="submit">Отправить</button>
-    </form>
-    <div class="footer">© 2025 Все права защищены</div>
-  </div>
+  <section id="about" class="section">
+    <div class="container">
+      <h2>О компании</h2>
+      <p>«Арт-Строй Краснодар» — это команда профессионалов, специализирующаяся на строительстве жилых и коммерческих объектов, а также архитектурном дизайне. Мы работаем по всему Краснодарскому краю.</p>
+    </div>
+  </section>
+
+  <section id="services" class="section dark">
+    <div class="container">
+      <h2>Наши услуги</h2>
+      <div class="cards">
+        <div class="card">
+          <h3>Строительство под ключ</h3>
+          <p>От фундамента до сдачи объекта – быстро и качественно.</p>
+        </div>
+        <div class="card">
+          <h3>Ремонт и отделка</h3>
+          <p>Все виды ремонтных работ, включая дизайнерские интерьеры.</p>
+        </div>
+        <div class="card">
+          <h3>Ландшафтный дизайн</h3>
+          <p>Красивое и функциональное благоустройство участка.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" class="section">
+    <div class="container">
+      <h2>Наши проекты</h2>
+      <div class="gallery">
+        <img src="https://source.unsplash.com/300x200/?house,modern" alt="Проект 1">
+        <img src="https://source.unsplash.com/300x200/?building,architecture" alt="Проект 2">
+        <img src="https://source.unsplash.com/300x200/?villa,interior" alt="Проект 3">
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="section dark">
+    <div class="container">
+      <h2>Связаться с нами</h2>
+      <p>📍 г. Краснодар, ул. Строителей, 25<br>📞 +7 (861) 555-55-55<br>📧 <a href="mailto:info@artstroy-krasnodar.ru">info@artstroy-krasnodar.ru</a></p>
+      
+      <form class="contact-form">
+        <input type="text" placeholder="Ваше имя" required>
+        <input type="email" placeholder="Email" required>
+        <textarea placeholder="Ваше сообщение" required></textarea>
+        <button type="submit">Отправить</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Арт-Строй Краснодар. Все права защищены.</p>
+  </footer>
+
 </body>
 </html>
