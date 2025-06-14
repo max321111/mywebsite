@@ -1,51 +1,16 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Арт-Строй Краснодар</title>
-  <link rel="stylesheet" href="css/style.css"/>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
-</head>
-<body>
-
-  <header class="hero">
-    <div class="container">
-      <h1>Арт-Строй Краснодар</h1>
-      <p>Надёжное строительство и дизайн с 2005 года</p>
-      <nav>
-        <ul>
-          <li><a href="#about">О нас</a></li>
-          <li><a href="#services">Услуги</a></li>
-          <li><a href="#projects">Проекты</a></li>
-          <li><a href="#contact">Контакты</a></li>
-        </ul>
-      </nav>
-    </div>
-  </header>
-
-  <section id="about" class="section">
-    <div class="container">
-      <h2>О компании</h2>
-      <p>«Арт-Строй Краснодар» — это команда профессионалов, специализирующаяся на строительстве жилых и коммерческих объектов, а также архитектурном дизайне. Мы работаем по всему Краснодарскому краю.</p>
-    </div>
-  </section>
-
-  <section id="services" class="section dark">
-    <div class="container">
-      <h2>Наши услуги</h2>
+<h2>Наши услуги</h2>
       <div class="cards">
         <div class="card">
-          <h3>Строительство под ключ</h3>
-          <p>От фундамента до сдачи объекта – быстро и качественно.</p>
+          <h3>Консультации</h3>
+          <p>Профессиональные советы и помощь в реализации ваших идей.</p>
         </div>
         <div class="card">
-          <h3>Ремонт и отделка</h3>
-          <p>Все виды ремонтных работ, включая дизайнерские интерьеры.</p>
+          <h3>Разработка</h3>
+          <p>Создание современных и удобных решений под ключ.</p>
         </div>
         <div class="card">
-          <h3>Ландшафтный дизайн</h3>
-          <p>Красивое и функциональное благоустройство участка.</p>
+          <h3>Поддержка</h3>
+          <p>Круглосуточная поддержка и сопровождение проектов.</p>
         </div>
       </div>
     </div>
@@ -55,9 +20,9 @@
     <div class="container">
       <h2>Наши проекты</h2>
       <div class="gallery">
-        <img src="https://source.unsplash.com/300x200/?house,modern" alt="Проект 1">
-        <img src="https://source.unsplash.com/300x200/?building,architecture" alt="Проект 2">
-        <img src="https://source.unsplash.com/300x200/?villa,interior" alt="Проект 3">
+        <img src="https://source.unsplash.com/300x200/?technology,code" alt="Проект 1" />
+        <img src="https://source.unsplash.com/300x200/?office,work" alt="Проект 2" />
+        <img src="https://source.unsplash.com/300x200/?team,meeting" alt="Проект 3" />
       </div>
     </div>
   </section>
@@ -65,19 +30,27 @@
   <section id="contact" class="section dark">
     <div class="container">
       <h2>Связаться с нами</h2>
-      <p>📍 г. Краснодар, ул. Строителей, 25<br>📞 +7 (861) 555-55-55<br>📧 <a href="mailto:info@artstroy-krasnodar.ru">info@artstroy-krasnodar.ru</a></p>
-      
-      <form class="contact-form">
-        <input type="text" placeholder="Ваше имя" required>
-        <input type="email" placeholder="Email" required>
-        <textarea placeholder="Ваше сообщение" required></textarea>
+      <p>📍 г. Ваш город, ул. Примерная, 1<br>
+         📞 +7 (900) 123-45-67<br>
+         📧 <a href="mailto:your-email@example.com">your-email@example.com</a></p>
+
+      <form class="contact-form" action="https://formsubmit.co/mtsebulya@list.ru" method="POST">
+        <input type="text" name="name" placeholder="Ваше имя" required />
+        <input type="email" name="email" placeholder="Email" required />
+        <textarea name="message" placeholder="Ваше сообщение" rows="5" required></textarea>
+
+        <!-- Отключить капчу -->
+        <input type="hidden" name="_captcha" value="false" />
+        <!-- Перенаправление после отправки -->
+        <input type="hidden" name="_next" value="https://your-website.com/thank-you.html" />
+
         <button type="submit">Отправить</button>
       </form>
     </div>
   </section>
 
   <footer>
-    <p>&copy; 2025 Арт-Строй Краснодар. Все права защищены.</p>
+    <p>&copy; 2025 Мой сайт с формой. Все права защищены.</p>
   </footer>
 
 </body>
