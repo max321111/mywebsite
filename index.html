@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Арт-Строй Краснодар</title>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <style>
     /* Общие стили */
     body {
@@ -28,20 +29,70 @@
     h1, h2, h3 {
       margin-bottom: 15px;
       font-weight: 700;
+      text-align: center; /* Центрирование заголовков */
     }
 
     p {
       margin-bottom: 20px;
     }
 
+    /* Фиксированное верхнее меню */
+    .fixed-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      background: #000;
+      color: white;
+      padding: 10px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    }
+
+    .fixed-logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+      color: #fff;
+    }
+
+    .fixed-header nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: flex;
+      gap: 30px;
+    }
+
+    .fixed-header nav ul li a {
+      color: white;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1.1rem;
+      padding: 8px 15px;
+      border-radius: 25px;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    .fixed-header nav ul li a:hover,
+    .fixed-header nav ul li a:focus {
+      background-color: rgba(255,255,255,0.2);
+      color: #cce4ff;
+      outline: none;
+      cursor: pointer;
+    }
+
     /* Хедер */
     header.hero {
-      background: linear-gradient(135deg, #007BFF 0%, #0056b3 100%);
+      background: #000; /* Черный фон */
       color: white;
       padding: 80px 20px 60px;
       text-align: center;
       position: relative;
       overflow: hidden;
+      margin-top: 60px; /* Отступ для фиксированного меню */
     }
 
     header.hero h1 {
@@ -58,34 +109,13 @@
       animation-delay: 0.5s;
     }
 
-    /* Навигация */
-    header.hero nav ul {
-      list-style: none;
-      padding: 0;
-      margin: 30px 0 0 0;
-      display: flex;
-      justify-content: center;
-      gap: 30px;
-      flex-wrap: wrap;
-    }
-
-    header.hero nav ul li a {
-      color: white;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 1.1rem;
-      padding: 8px 15px;
-      border-radius: 25px;
-      transition: background-color 0.3s, color 0.3s;
-      display: inline-block;
-    }
-
-    header.hero nav ul li a:hover,
-    header.hero nav ul li a:focus {
-      background-color: rgba(255,255,255,0.2);
-      color: #cce4ff;
-      outline: none;
-      cursor: pointer;
+    /* Фоновое изображение для секций */
+    .section-background {
+      background-size: cover; /* Обеспечивает покрытие всего фона */
+      background-position: center; /* Центрирует изображение */
+      color: white; /* Цвет текста */
+      padding: 80px 0; /* Отступы для секции */
+      text-align: center; /* Центрирование текста */
     }
 
     /* Секции */
@@ -128,6 +158,15 @@
       box-shadow: 0 4px 15px rgba(0,0,0,0.1);
       color: #333;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 8px;
     }
 
     section.dark .card {
@@ -152,8 +191,8 @@
     }
 
     .gallery img {
-      width: 300px;
-      height: 200px;
+      width: 300px; /* Установлено на 300px */
+      height: 200px; /* Установлено на 200px */
       object-fit: cover;
       border-radius: 8px;
       box-shadow: 0 4px 15px rgba(0,0,0,0.15);
@@ -186,8 +225,7 @@
       transition: border-color 0.3s ease;
     }
 
-    form.
-        contact-form input:focus,
+    form.contact-form input:focus,
     form.contact-form textarea:focus {
       border-color: #007BFF;
       outline: none;
@@ -220,6 +258,25 @@
       color: #eee;
       font-size: 0.95rem;
       user-select: none;
+      position: relative;
+    }
+
+    footer .footer-content {
+      margin-bottom: 15px;
+    }
+
+    footer .map-container {
+      max-width: 300px;
+      margin: 0 auto;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    }
+
+    footer .map-container iframe {
+      width: 100%;
+      height: 200px;
+      border: 0;
     }
 
     /* Анимации */
@@ -260,27 +317,37 @@
         width: 100%;
         height: auto;
       }
+      /* Верхнее меню становится колонкой на мобильных */
+      header.hero > .container:first-child nav ul {
+        flex-direction: row !important;
+        justify-content: center;
+      }
     }
   </style>
 </head>
 <body>
 
+  <!-- Фиксированное верхнее меню -->
+  <div class="fixed-header">
+    <div class="fixed-logo">Арт-Строй Краснодар</div>
+    <nav>
+      <ul>
+        <li><a href="#about">О нас</a></li>
+        <li><a href="#services">Услуги</a></li>
+        <li><a href="#projects">Проекты</a></li>
+        <li><a href="#contact">Контакты</a></li>
+      </ul>
+    </nav>
+  </div>
+
   <header class="hero">
     <div class="container">
       <h1>Арт-Строй Краснодар</h1>
       <p>Надёжное строительство и дизайн с 2005 года</p>
-      <nav>
-        <ul>
-          <li><a href="#about">О нас</a></li>
-          <li><a href="#services">Услуги</a></li>
-          <li><a href="#projects">Проекты</a></li>
-          <li><a href="#contact">Контакты</a></li>
-        </ul>
-      </nav>
     </div>
   </header>
 
-  <section id="about" class="section">
+  <section id="about" class="section-background" style="background-image: url('construction-skyline-scene-blue-background-vector-9954589.jpg');">
     <div class="container">
       <h2>О компании</h2>
       <p>«Арт-Строй Краснодар» — это команда профессионалов, специализирующаяся на строительстве жилых и коммерческих объектов, а также архитектурном дизайне. Мы работаем по всему Краснодарскому краю.</p>
@@ -292,28 +359,37 @@
       <h2>Наши услуги</h2>
       <div class="cards">
         <div class="card">
+          <img src="https://source.unsplash.com/300x200/?construction" alt="Строительство под ключ">
           <h3>Строительство под ключ</h3>
           <p>От фундамента до сдачи объекта – быстро и качественно.</p>
+          <p><strong>Цена: от 1,500,000 руб.</strong></p>
         </div>
         <div class="card">
+          <img src="https://source.unsplash.com/300x200/?renovation" alt="Ремонт и отделка">
           <h3>Ремонт и отделка</h3>
           <p>Все виды ремонтных работ, включая дизайнерские интерьеры.</p>
+          <p><strong>Цена: от 500,000 руб.</strong></p>
         </div>
         <div class="card">
+          <img src="https://source.unsplash.com/300x200/?landscape-design" alt="Ландшафтный дизайн">
           <h3>Ландшафтный дизайн</h3>
           <p>Красивое и функциональное благоустройство участка.</p>
+          <p><strong>Цена: от 200,000 руб.</strong></p>
         </div>
       </div>
     </div>
   </section>
 
-  <section id="projects" class="section">
+  <section id="projects" class="section-background" style="background-image: url('path/to/your/image.jpg');">
     <div class="container">
       <h2>Наши проекты</h2>
       <div class="gallery">
-        <img src="https://source.unsplash.com/300x200/?house,modern" alt="Проект 1">
-        <img src="https://source.unsplash.com/300x200/?building,architecture" alt="Проект 2">
-        <img src="https://source.unsplash.com/300x200/?villa,interior" alt="Проект 3">
+        <img src="11.jpg" alt="Квартира 1">
+        <img src="2c59fdc25fd33b084854a3238d353d2a.jpg" alt="Квартира 2">
+        <img src="161beaada641ed07b3299f3cefdfb0df.jpg" alt="Квартира 3">
+        <img src="a30325e1ad9415088a466dd96e7726d5.jpg" alt="Гостиная">
+        <img src="9ebc5dd61a74e7f66179d22cf187d898.jpg" alt="Кухня">
+        <img src="b22803cbd6849297e50a1e3279e0ace7.jpg" alt="Спальня">
       </div>
     </div>
   </section>
@@ -321,10 +397,9 @@
   <section id="contact" class="section dark">
     <div class="container">
       <h2>Связаться с нами</h2>
-      <p>📍 г. Краснодар, ул. Строителей, 25<br>📞 +7 (861) 555-55-55<br>📧 </p>
-      
-      <form class="contact-form" action="https://formsubmit.co/
-mtsebulya@list.ru" method="POST">
+      <p>📍 ул. Строителей, 25, Краснодар, Краснодарский край, 350051<br>📞 +7 (861) 555-55-55</p>
+
+      <form class="contact-form" action="https://formsubmit.co/mtsebulya@list.ru" method="POST">
         <input type="text" name="name" placeholder="Ваше имя" required>
         <input type="email" name="email" placeholder="Email" required>
         <textarea name="message" placeholder="Ваше сообщение" required></textarea>
@@ -335,7 +410,73 @@ mtsebulya@list.ru" method="POST">
 
   <footer>
     <p>&copy; 2025 Арт-Строй Краснодар. Все права защищены.</p>
+    <p>📍 ул. Строителей, 25, Краснодар, Краснодарский край, 350051<br>📞 +7 (861) 555-55-55</p>
+    <div class="map-container">
+      <iframe 
+        src="https://maps.app.goo.gl/9m7EewQHcVQuR3SR8" 
+        width="300" 
+        height="200" 
+        style="border:0;" 
+        allowfullscreen="" 
+        loading="lazy" 
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
   </footer>
+
+  <script>
+    $(document).ready(function() {
+      // Функция проверяет заполнение полей формы
+      $('form.contact-form').on('submit', function(event) {
+        event.preventDefault(); // Предотвращаем стандартное поведение формы
+        var str = "Нажата кнопка Отправить\n";
+        alert(str);
+        this.submit(); // Отправляем форму
+      });
+
+      // Функция для очистки данных
+      $('#ResetCheck').change(function() {
+        if (confirm('Очистить поле данных?')) {
+          $('#DataField').html('');
+          $(this).prop('checked', false);
+        }
+      });
+
+      // Функция для восстановления данных
+      $('#RestoreCheck').change(function() {
+        if (confirm('Восстановить поле данных?')) {
+          $('#DataField').html('поле данных');
+          $(this).prop('checked', false);
+        }
+      });
+
+      // Функция для изменения цвета div
+      $('#divColor').click(function() {
+        var cl = $(this).css('background-color');
+        if (cl === 'rgb(255, 255, 0)') // yellow
+          $(this).css('background', 'red');
+        else if (cl === 'rgb(255, 0, 0)') // red
+          $(this).css('background', 'green');
+        else if (cl === 'rgb(0, 128, 0)') // green
+          $(this).css('background', 'black');
+        else 
+          $(this).css('background', 'yellow');
+      });
+
+      // Функция для изменения цвета при наведении
+      $('#relColor').hover(function() {
+        $(this).css('background', 'blue');
+      }, function() {
+        $(this).css('background', '');
+      });
+
+      // Функция для открытия нового окна
+      $('#openWindowButton').click(function() {
+        var PopUpW = window.open("", "PopUp Window", "resizable=no,scrollbars=no,width=350,height=150,copyhistory=1");
+        PopUpW.document.write("Много-много текстового контента!");
+      });
+    });
+  </script>
 
 </body>
 </html>
